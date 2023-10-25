@@ -24,6 +24,7 @@ int main(int argc, char *argv[]){
 void lcg(char *input, int seed){
   //set seed
   unsigned int x = seed;
+  FILE *file = NULL;
 
   //measure length
   int len;
@@ -32,24 +33,35 @@ void lcg(char *input, int seed){
   //create big array
   unsigned int *arr = calloc(len, sizeof(unsigned int));
 
+  file = fopen("cyphers.txt", "a");
+
   for(int i = 0; i < len; i++){
     x = (A * x + C) % M;
     input[i] = input[i] ^ x;
 
     //add x to arr
     arr[i] = x;
+    fprintf(file, "%u ", arr[i]);
+    
   }
+
+  fprintf(file, "\n");
 
   for(int i = 0; i < len; i++){
     printf("%c", input[i]);
   }
   printf("\n");
+
+  fprintf(file, "%s\n", input);
 
   for(int i = 0; i < len; i++){
     input[i] = input[i] ^ arr[i];
+    //open file
+
     printf("%c", input[i]);
   }
   printf("\n");
+  fclose(file);
 }
 
 
