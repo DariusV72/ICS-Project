@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define A 1103515245
 #define C 12345
@@ -34,10 +35,17 @@ void lcg(char *input, int seed){
   unsigned int *arr = calloc(len, sizeof(unsigned int));
 
   file = fopen("cyphers.txt", "a");
+  int holder;
 
   for(int i = 0; i < len; i++){
-    x = (A * x + C) % M;
-    input[i] = input[i] ^ x;
+
+    do{
+      x = ((A * x + C) % M) % 127;
+      holder = input[i] ^ x;
+    }while(holder < 32);
+
+    //add to list
+    input[i] = holder;
 
     //add x to arr
     arr[i] = x;
@@ -49,6 +57,7 @@ void lcg(char *input, int seed){
 
   for(int i = 0; i < len; i++){
     printf("%c", input[i]);
+    printf("%d\n", input[i]);
   }
   printf("\n");
 
