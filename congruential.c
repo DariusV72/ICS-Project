@@ -7,23 +7,6 @@
 #define C 12345
 #define M 127
 
-// //prototype
-// char *dynamicString();
-// void lcg(char *input, int seed);
-
-// int main(int argc, char *argv[]){
-//   //read the seed
-//   int seed;
-//   seed = rand();
-
-//   //read the string
-//   char *input = NULL;
-//   input = dynamicString();
-
-//   //calculate the random number 
-//   lcg(input, seed);
-// }
-
 void lcg(char *input, int seed){
   //set seed
   unsigned int x = seed;
@@ -38,7 +21,7 @@ void lcg(char *input, int seed){
   //create big array
   unsigned int *arr = calloc(len, sizeof(unsigned int));
   //open file for appending
-  file = fopen("cyphers.txt", "a");
+  file = fopen("cyphers.txt", "w");
 
   //calculate random number and perform encryption.
   int holder;
@@ -53,24 +36,15 @@ void lcg(char *input, int seed){
 
     //add x to arr
     arr[i] = x;
-    
   }
 
   for(int i = 0; i < len; i++){
     printf("%c", input[i]);
-    printf("%d\n", input[i]);
   }
   printf("\n");
 
   //print end result to file
   fprintf(file, "%s\n", input);
-
-  // for(int i = 0; i < len; i++){
-  //   input[i] = input[i] ^ arr[i];
-  //   //open file
-
-  //   printf("%c", input[i]);
-  // }
 
   //close the file
   fclose(file);

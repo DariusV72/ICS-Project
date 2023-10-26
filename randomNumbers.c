@@ -12,10 +12,6 @@ void *safeMalloc(int n) {
   return p;
 }
 
-char bitification() {
-
-}
-
 
 void randomNumsGen(char *N) {
   int len  = strlen(N);
