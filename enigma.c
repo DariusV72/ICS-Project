@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "congruential.c"
 #include "randomNumbers.c"
 
 int main(int argc, char *argv[]){
@@ -11,6 +10,7 @@ int main(int argc, char *argv[]){
   printf("Encryption mode: \n");
   scanf("%d\n", &input);
 
+  //TO DO: Fix the printf order.
   //ask for text to encode/decode
   printf("Cypher text: \n");
   char *cypher = NULL;

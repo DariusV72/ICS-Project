@@ -1,20 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-char *dynamicString(){
-  char *input, c;
-  int i = 0;
-  input = (char *)malloc(1*sizeof(char));
-
-  while(c = getc(stdin), c!='\n'){
-    input[i] = c;
-    i++;
-    input = realloc(input, 8*i*sizeof(char));
-  }
-  input[i] = '\0';
-  return input;
-}
+#include "congruential.c"
 
 void *safeMalloc(int n) {
   void *p = malloc(n);
