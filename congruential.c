@@ -19,12 +19,16 @@ int main(int argc, char *argv[]){
   //read the string
   char *input = NULL;
   input = dynamicString();
+
+  //calculate the random number 
   lcg(input, seed);
 }
 
 void lcg(char *input, int seed){
   //set seed
   unsigned int x = seed;
+
+  //make file pointer
   FILE *file = NULL;
 
   //measure length
@@ -33,12 +37,12 @@ void lcg(char *input, int seed){
 
   //create big array
   unsigned int *arr = calloc(len, sizeof(unsigned int));
-
+  //open file for appending
   file = fopen("cyphers.txt", "a");
+
+  //calculate random number and perform encryption.
   int holder;
-
   for(int i = 0; i < len; i++){
-
     do{
       x = ((A * x + C) % M) % 127;
       holder = input[i] ^ x;
@@ -75,10 +79,13 @@ void lcg(char *input, int seed){
 
 
 char *dynamicString(){
+
+  //create starting array
   char *input, c;
   int i = 0;
   input = (char *)malloc(1*sizeof(char));
 
+  //reallocate array and add characters
   while(c = getc(stdin), c!='\n'){
     input[i] = c;
     i++;
