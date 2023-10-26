@@ -5,24 +5,24 @@
 
 #define A 1103515245
 #define C 12345
-#define M 2147483648
+#define M 127
 
-//prototype
-char *dynamicString();
-void lcg(char *input, int seed);
+// //prototype
+// char *dynamicString();
+// void lcg(char *input, int seed);
 
-int main(int argc, char *argv[]){
-  //read the seed
-  int seed;
-  seed = rand();
+// int main(int argc, char *argv[]){
+//   //read the seed
+//   int seed;
+//   seed = rand();
 
-  //read the string
-  char *input = NULL;
-  input = dynamicString();
+//   //read the string
+//   char *input = NULL;
+//   input = dynamicString();
 
-  //calculate the random number 
-  lcg(input, seed);
-}
+//   //calculate the random number 
+//   lcg(input, seed);
+// }
 
 void lcg(char *input, int seed){
   //set seed
@@ -44,7 +44,7 @@ void lcg(char *input, int seed){
   int holder;
   for(int i = 0; i < len; i++){
     do{
-      x = ((A * x + C) % M) % 127;
+      x = ((A * x + C) % M);
       holder = input[i] ^ x;
     }while(holder < 32);
 
@@ -53,11 +53,8 @@ void lcg(char *input, int seed){
 
     //add x to arr
     arr[i] = x;
-    fprintf(file, "%u ", arr[i]);
     
   }
-
-  fprintf(file, "\n");
 
   for(int i = 0; i < len; i++){
     printf("%c", input[i]);
@@ -65,15 +62,17 @@ void lcg(char *input, int seed){
   }
   printf("\n");
 
+  //print end result to file
   fprintf(file, "%s\n", input);
 
-  for(int i = 0; i < len; i++){
-    input[i] = input[i] ^ arr[i];
-    //open file
+  // for(int i = 0; i < len; i++){
+  //   input[i] = input[i] ^ arr[i];
+  //   //open file
 
-    printf("%c", input[i]);
-  }
-  printf("\n");
+  //   printf("%c", input[i]);
+  // }
+
+  //close the file
   fclose(file);
 }
 

@@ -30,8 +30,7 @@ char bitification() {
 }
 
 
-void randomNumsGen() {
-  char *N = dynamicString();
+void randomNumsGen(char *N) {
   int len  = strlen(N);
   int whatever = len;
   int count = 0;
@@ -39,23 +38,25 @@ void randomNumsGen() {
   srand(seed);
   int n = rand();
   int r;
+
   int* encoded = NULL;
   encoded = safeMalloc(len*sizeof(int));
+
   if(n<10) {
     while(whatever > 0) {
-    r = (rand() > (RAND_MAX / n));
-    //printf("%d", r);
-    encoded[count] =r;
-    count++;
-    whatever --;
+      r = (rand() > (RAND_MAX / n));
+      encoded[count] =r;
+      count++;
+      whatever --;
     }
-  } else {
+  } 
+  else {
     while(whatever > 0) {
-    r = rand() % n;
-    //printf("%d", r);
-    encoded[count] =r;
-    count++;
-    whatever --;
+      r = rand() % n;
+      //printf("%d", r);
+      encoded[count] =r;
+      count++;
+      whatever --;
     }
   }
   
@@ -82,8 +83,8 @@ void randomNumsGen() {
   free(N);
 }
 
-int main(int argc, char*argv[]) {
-  randomNumsGen();
-}
+// int main(int argc, char*argv[]) {
+//   randomNumsGen();
+// }
 
 //eventual TODO: implement int to bits function, if needed
