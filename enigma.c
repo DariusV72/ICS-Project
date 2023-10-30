@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
   //variables
   char method;
   char mode;
-  int seed;
+  long seed;
   FILE *file = NULL;
 
   //ask for decryption or encryption
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
   //generate a seed depending on mode
   if(toupper(mode) == 'D'){
     printf("Key:\n");
-    scanf("%d", &seed);
+    scanf("%ld", &seed);
   }
   else if(toupper(mode) == 'E') {
     //generate random seed
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
 
     //print seed to file
     file = fopen("cyphers.txt", "a");
-    fprintf(file, "%d\n", seed);
+    fprintf(file, "%ld\n", seed);
     fclose(file);
   }
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
   char *cypher = calloc(ARR_SIZE, sizeof(char));
   scanf("%s", cypher);
 
-  switch(method){
+  switch(toupper(method)){
     case 'R':
       randomNumsGen(cypher, seed);
       break;

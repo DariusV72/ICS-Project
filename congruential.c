@@ -6,9 +6,9 @@
 #define A 5
 //1103515245
 #define C 12345
-#define M 127
+#define M 32
 
-void lcg(char *input, int seed){
+void lcg(char *input, long seed){
   //set seed
   unsigned int x = seed;
 
@@ -25,16 +25,18 @@ void lcg(char *input, int seed){
   file = fopen("cyphers.txt", "a");
 
   //calculate random number and perform encryption.
-  int holder;
+  //int holder;
   for(int i = 0; i < len; i++){
-    do{
-      x = ((A * x + C) % M);
-      printf("%d\n", x);
-      holder = input[i] ^ x;
-    }while(holder <= 32);
+    // do{
+    //   x = ((A * x + C) % M);
+    //   printf("%d\n", x);
+    //   holder = input[i] ^ x;
+    // }while(holder <= 32);
+    x = ((A * x + C) % M);
 
     //add to list
-    input[i] = holder;
+    //input[i] = holder;
+    input[i] = input[i] ^ x;
 
     //add x to arr
     arr[i] = x;
