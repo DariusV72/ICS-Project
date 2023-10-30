@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <time.h>
 #include "randomNumbers.c"
+#include "substractive.c"
 
 #define ARR_SIZE 10000
 
@@ -53,6 +54,9 @@ int main(int argc, char *argv[]){
       break;
     case 'L':
       lcg(cypher, seed);
+      break;
+    case 'S':
+      substractive(cypher, seed);
       break;
   }
 
