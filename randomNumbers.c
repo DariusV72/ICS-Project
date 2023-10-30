@@ -12,6 +12,10 @@ void *safeMalloc(int n) {
   return p;
 }
 
+char bitification() {
+
+}
+
 
 void randomNumsGen(char *N) {
   int len  = strlen(N);
@@ -28,6 +32,7 @@ void randomNumsGen(char *N) {
   if(n<10) {
     while(whatever > 0) {
       r = (rand() > (RAND_MAX / n));
+      N[count] = N[count] ^ r;
       encoded[count] =r;
       count++;
       whatever --;
@@ -35,8 +40,12 @@ void randomNumsGen(char *N) {
   } 
   else {
     while(whatever > 0) {
-      r = rand() % n;
-      //printf("%d", r);
+      int holder;
+      do{
+        r = (rand() % n)%127;
+        holder = N[count] ^ r;
+      } while(holder <=32);
+      N[count] = holder;
       encoded[count] =r;
       count++;
       whatever --;
@@ -44,23 +53,9 @@ void randomNumsGen(char *N) {
   }
   
   for(int i = 0; i<count; i++) {
-    printf("%d ", encoded[i]);
+    printf("%c", N[i]);
   }
   printf("\n");
-  for(int i = 0; i<count; i++) {
-    N[i] = encoded[i] ^ N[i];
-  }
-
-  for(int i = 0; i<count; i++) {
-    printf("%c ", N[i]);
-  }
-  printf("\n");
-  for(int i = 0; i<count; i++) {
-    N[i] = encoded[i] ^ N[i];
-  }
-  for(int i = 0; i<count; i++) {
-    printf("%c ", N[i]);
-  }
   printf("\n");
   free(encoded);
   free(N);
