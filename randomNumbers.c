@@ -53,7 +53,7 @@ void randomNumsGen(char *N) {
   }
   
   for(int i = 0; i<count; i++) {
-    printf("%c ", N[i]);
+    printf("%c", N[i]);
   }
   printf("\n");
   printf("\n");
