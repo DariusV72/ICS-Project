@@ -1,13 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <time.h>
 #include "randomNumbers.c"
+
+#define ARR_SIZE 10000
 
 int main(int argc, char *argv[]){
   //variables
   char method;
   char mode;
   int seed;
+  FILE *file = NULL;
 
   //ask for decryption or encryption
   printf("Encryption or Decryption[E/D]: \n");
@@ -16,27 +20,36 @@ int main(int argc, char *argv[]){
   }while(toupper(mode) != 'E' && toupper(mode) != 'D');
 
   //generate a seed depending on mode
-  seed = rand();
-  if(mode == 'D'){
-    printf("Key: \n");
-    scanf("%d\n", &seed);
+  if(toupper(mode) == 'D'){
+    printf("Key:\n");
+    scanf("%d", &seed);
+  }
+  else if(toupper(mode) == 'E') {
+    //generate random seed
+    srand(time(NULL));
+    seed = rand();
+
+    //print seed to file
+    file = fopen("cyphers.txt", "a");
+    fprintf(file, "%d\n", seed);
+    fclose(file);
   }
 
   //ask for way of encrypting/decrypting
-  printf("Encrypting mode[R/L/S]: \n");
+  printf("Encrypting mode[R/L/S]:\n");
   do{
-    scanf("%c\n", &method);
+    scanf("%c", &method);
   }while(toupper(method) != 'R' && toupper(method) != 'L' && toupper(method) != 'S');
 
   //TO DO: Fix the printf order.
   //ask for text to encode/decode
-  printf("Cypher text: \n");
-  char *cypher = NULL;
-  cypher = dynamicString();
+  printf("Cypher text:\n");
+  char *cypher = calloc(ARR_SIZE, sizeof(char));
+  scanf("%s", cypher);
 
   switch(method){
     case 'R':
-      randomNumsGen(cypher);
+      randomNumsGen(cypher, seed);
       break;
     case 'L':
       lcg(cypher, seed);

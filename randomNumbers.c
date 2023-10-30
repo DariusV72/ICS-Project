@@ -12,16 +12,10 @@ void *safeMalloc(int n) {
   return p;
 }
 
-char bitification() {
-
-}
-
-
-void randomNumsGen(char *N) {
+void randomNumsGen(char *N, int seed) {
   int len  = strlen(N);
   int whatever = len;
   int count = 0;
-  int seed;
   srand(seed);
   int n = rand();
   int r;
@@ -48,21 +42,16 @@ void randomNumsGen(char *N) {
       N[count] = holder;
       encoded[count] =r;
       count++;
-      whatever --;
+      whatever--;
     }
   }
-  
-  for(int i = 0; i<count; i++) {
-    printf("%c", N[i]);
-  }
-  printf("\n");
-  printf("\n");
+
+  //print text to file
+  FILE *file = NULL;
+  file = fopen("cyphers.txt", "a");
+  fprintf(file, "%s\n", N);
+  fclose(file);
+
   free(encoded);
   free(N);
 }
-
-// int main(int argc, char*argv[]) {
-//   randomNumsGen();
-// }
-
-//eventual TODO: implement int to bits function, if needed
