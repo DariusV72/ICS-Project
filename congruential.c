@@ -1,75 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
-#define A 1103515245
+#define A 5
 #define C 12345
-#define M 2147483648
+#define M 32
 
-//prototype
-char *dynamicString();
-void lcg(char *input, int seed);
-
-int main(int argc, char *argv[]){
-  //read the seed
-  int seed;
-  seed = rand();
-
-  //read the string
-  char *input = NULL;
-  input = dynamicString();
-  lcg(input, seed);
-}
-
-void lcg(char *input, int seed){
+void lcg(char *input, long seed){
   //set seed
   unsigned int x = seed;
+
+  //make file pointer
   FILE *file = NULL;
 
   //measure length
   int len;
   len = strlen(input);
 
-  //create big array
-  unsigned int *arr = calloc(len, sizeof(unsigned int));
-
+  //open file for appending
   file = fopen("cyphers.txt", "a");
 
+  //calculate random number and perform encryption.
   for(int i = 0; i < len; i++){
-    x = (A * x + C) % M;
+
+    //convert space to DEL.
+    if(input[i] == 32) {
+      input[i] = 127;
+    }
+
+    //calculate number to XOR
+    x = ((A * x + C) % M);
     input[i] = input[i] ^ x;
 
-    //add x to arr
-    arr[i] = x;
-    fprintf(file, "%u ", arr[i]);
-    
+    //convert DEL to space.
+    if(input[i] == 127) {
+      input[i] = 32;
+    }
   }
-
-  fprintf(file, "\n");
-
-  for(int i = 0; i < len; i++){
-    printf("%c", input[i]);
-  }
-  printf("\n");
-
+  
+  //print end result to file
   fprintf(file, "%s\n", input);
 
-  for(int i = 0; i < len; i++){
-    input[i] = input[i] ^ arr[i];
-    //open file
-
-    printf("%c", input[i]);
-  }
-  printf("\n");
+  //close the file
   fclose(file);
 }
 
 
 char *dynamicString(){
+
+  //create starting array
   char *input, c;
   int i = 0;
   input = (char *)malloc(1*sizeof(char));
 
+  //reallocate array and add characters
   while(c = getc(stdin), c!='\n'){
     input[i] = c;
     i++;
