@@ -12,6 +12,8 @@ int main(int argc, char *argv[]){
   char method;
   char mode;
   long seed;
+
+  //set file pointer
   FILE *file = NULL;
 
   //ask for decryption or encryption
@@ -42,12 +44,16 @@ int main(int argc, char *argv[]){
     scanf("%c", &method);
   }while(toupper(method) != 'R' && toupper(method) != 'L' && toupper(method) != 'S');
 
-  //TO DO: Fix the printf order.
-  //ask for text to encode/decode
+  //put newline in buffer
   printf("Cypher text:\n");
-  char *cypher = calloc(ARR_SIZE, sizeof(char));
-  scanf("%s", cypher);
+  char buffer;
+  scanf("%c", &buffer);
 
+  //read string
+  char *cypher = NULL;
+  cypher = dynamicString();
+
+  //decide which encoding/decoding to use
   switch(toupper(method)){
     case 'R':
       randomNumsGen(cypher, seed);
@@ -59,5 +65,4 @@ int main(int argc, char *argv[]){
       substractive(cypher, seed);
       break;
   }
-
 }
