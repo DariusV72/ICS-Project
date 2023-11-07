@@ -17,10 +17,6 @@ void lcg(char *input, long seed){
   //measure length
   int len;
   len = strlen(input);
-
-  //open file for appending
-  file = fopen("cyphers.txt", "a");
-
   //calculate random number and perform encryption.
   for(int i = 0; i < len; i++){
 
@@ -38,12 +34,6 @@ void lcg(char *input, long seed){
       input[i] = 32;
     }
   }
-  
-  //print end result to file
-  fprintf(file, "%s", input);
-
-  //close the file
-  fclose(file);
 }
 
 

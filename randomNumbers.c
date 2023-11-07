@@ -34,10 +34,4 @@ void randomNumsGen(char *N, long seed) {
     count++;
     len--;
   }
-
-  //print text to file
-  FILE *file = NULL;
-  file = fopen("cyphers.txt", "a");
-  fprintf(file, "%s", N);
-  fclose(file);
 }

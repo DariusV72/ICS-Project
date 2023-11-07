@@ -32,14 +32,6 @@ void substractive(unsigned char *input, int seed){
     if(input[i] == 127) {
       input[i] = 32;
     }
-  }
-  //set file pointer
-  FILE *file = NULL;
-
-  //open file for appending and print to file
-  file = fopen("cyphers.txt", "a");
-  fprintf(file, "%s", input);
-  
+  } 
   free(arr);
-  fclose(file);
 }

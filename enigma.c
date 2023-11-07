@@ -5,7 +5,7 @@
 #include "randomNumbers.c"
 #include "substractive.c"
 
-#define ARR_SIZE 10000
+
 
 int main(int argc, char *argv[]){
   //variables
@@ -15,26 +15,28 @@ int main(int argc, char *argv[]){
 
   //set file pointer
   FILE *file = NULL;
+  FILE *decodedFile = NULL;
 
   //ask for decryption or encryption
   printf("Encryption or Decryption[E/D]: \n");
   do{
     scanf("%c", &mode);
   }while(toupper(mode) != 'E' && toupper(mode) != 'D');
-  file = fopen("cyphers.txt", "a");
+  
   //generate a seed depending on mode
   if(toupper(mode) == 'D'){
     printf("Key:\n");
     scanf("%ld", &seed);
+    decodedFile = fopen("decoded.txt", "w");
   }
   else if(toupper(mode) == 'E') {
     //generate random seed
     srand(time(NULL));
     seed = rand();
-    fclose(file);
     file = fopen("cyphers.txt", "w");
     //print seed to file
     fprintf(file, "%ld\n", seed);
+    
   }
 
   //ask for way of encrypting/decrypting
@@ -52,10 +54,9 @@ int main(int argc, char *argv[]){
   char *cypher = NULL;
   cypher = dynamicString();
 
-  if(toupper(mode) == 'D') {
-    cypher[strlen(cypher) - 1] = '\0';
-  }
-  fclose(file);
+  // if(toupper(mode) == 'D') {
+  //   cypher[strlen(cypher) - 1] = '\0';
+  // }
   //decide which encoding/decoding to use
   switch(toupper(method)){
     case 'R':
@@ -68,12 +69,18 @@ int main(int argc, char *argv[]){
       substractive(cypher, seed);
       break;
   }
-  file = fopen("cyphers.txt", "a");
   if(toupper(mode) == 'E') {
+    
+    fprintf(file, "%s", cypher);
     fprintf(file, "&\n");
     fprintf(file, "Encryption of type %c\n", toupper(method));
+    fclose(file);
+  } else {
+    
+    for(int i = 0; i<strlen(cypher)-1;i++){
+      fprintf(decodedFile, "%c", cypher[i]);
+    }
+    fclose(decodedFile);
   }
-  fclose(file);
-  
   free(cypher);
 }
