@@ -73,7 +73,7 @@ int main(int argc, char *argv[]){
   file = fopen("cyphers.txt", "a");
   if(toupper(mode) == 'E') {
     fprintf(file, "&\n");
-    frpintf(file, "Encryption of type %c\n", toupper(method));
+    fprintf(file, "Encryption of type %c\n", toupper(method));
   }
   fclose(file);
   
