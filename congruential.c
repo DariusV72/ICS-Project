@@ -5,7 +5,7 @@
 
 #define A 5
 #define C 12345
-#define M 32
+#define M 31
 
 void lcg(char *input, long seed){
   //set seed
@@ -52,7 +52,7 @@ char *dynamicString(){
   //create starting array
   char *input, c;
   int i = 0;
-  input = (char *)malloc(1*sizeof(char));
+  input = (char *)malloc(2*sizeof(char));
 
   //reallocate array and add characters
   while(c = getc(stdin), c!='\n'){

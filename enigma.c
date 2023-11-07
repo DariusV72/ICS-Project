@@ -54,10 +54,12 @@ int main(int argc, char *argv[]){
 
   fclose(file);
   if(toupper(mode) == 'D') {
-    cypher[strlen(cypher) - 1] = '\0';
+    file = fopen("cyphers.txt", "w");
+    //cypher[strlen(cypher) - 1] = '\0';
     char amp = '&';
-    fprintf(file, "%c\n", amp);
+   // fprintf(file, "%c\n", amp);
   }
+  fclose(file);
   //decide which encoding/decoding to use
   switch(toupper(method)){
     case 'R':
@@ -76,5 +78,6 @@ int main(int argc, char *argv[]){
     fprintf(file, "Encryption of type %c\n", toupper(method));
   }
   fclose(file);
+  
   
 }

@@ -41,6 +41,5 @@ void randomNumsGen(char *N, long seed) {
   fprintf(file, "%s", N);
   fclose(file);
 
-  //free aaaaalllll the arrays
-  free(N);
+  
 }

@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 
-#define m 32
+#define m 31
 
 void substractive(unsigned char *input, int seed){
   //setup array for keys of 55
