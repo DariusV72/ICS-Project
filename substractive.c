@@ -38,7 +38,7 @@ void substractive(unsigned char *input, int seed){
 
   //open file for appending and print to file
   file = fopen("cyphers.txt", "a");
-  fprintf(file, "%s\n", input);
+  fprintf(file, "%s", input);
   
   fclose(file);
 }

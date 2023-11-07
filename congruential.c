@@ -40,7 +40,7 @@ void lcg(char *input, long seed){
   }
   
   //print end result to file
-  fprintf(file, "%s\n", input);
+  fprintf(file, "%s", input);
 
   //close the file
   fclose(file);
