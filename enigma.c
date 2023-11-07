@@ -52,12 +52,8 @@ int main(int argc, char *argv[]){
   char *cypher = NULL;
   cypher = dynamicString();
 
-  fclose(file);
   if(toupper(mode) == 'D') {
-    file = fopen("cyphers.txt", "w");
-    //cypher[strlen(cypher) - 1] = '\0';
-    char amp = '&';
-   // fprintf(file, "%c\n", amp);
+    cypher[strlen(cypher) - 1] = '\0';
   }
   fclose(file);
   //decide which encoding/decoding to use
@@ -79,5 +75,5 @@ int main(int argc, char *argv[]){
   }
   fclose(file);
   
-  
+  free(cypher);
 }

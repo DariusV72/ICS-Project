@@ -40,6 +40,4 @@ void randomNumsGen(char *N, long seed) {
   file = fopen("cyphers.txt", "a");
   fprintf(file, "%s", N);
   fclose(file);
-
-  
 }

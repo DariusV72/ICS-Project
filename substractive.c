@@ -40,5 +40,6 @@ void substractive(unsigned char *input, int seed){
   file = fopen("cyphers.txt", "a");
   fprintf(file, "%s", input);
   
+  free(arr);
   fclose(file);
 }

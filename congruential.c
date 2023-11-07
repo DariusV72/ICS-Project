@@ -48,18 +48,18 @@ void lcg(char *input, long seed){
 
 
 char *dynamicString(){
-
   //create starting array
   char *input, c;
   int i = 0;
-  input = (char *)malloc(2*sizeof(char));
+  input = (char *)malloc(sizeof(char));
 
   //reallocate array and add characters
   while(c = getc(stdin), c!='\n'){
     input[i] = c;
     i++;
-    input = realloc(input, 2*i*sizeof(char));
+    input = realloc(input, (i + 1)*sizeof(char));
   }
+  
   input[i] = '\0';
   return input;
 }
