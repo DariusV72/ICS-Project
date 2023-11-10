@@ -53,10 +53,6 @@ int main(int argc, char *argv[]){
   //read string
   char *cypher = NULL;
   cypher = dynamicString();
-
-  // if(toupper(mode) == 'D') {
-  //   cypher[strlen(cypher) - 1] = '\0';
-  // }
   //decide which encoding/decoding to use
   switch(toupper(method)){
     case 'R':
