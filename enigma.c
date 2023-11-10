@@ -1,10 +1,13 @@
+//Project title: Enigma++
+//Authors: Quinten van Laar - s4058003 and Vrîncianu Andrei - Darius s5524040
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <time.h>
 #include "randomNumbers.c"
 #include "substractive.c"
-
 
 
 int main(int argc, char *argv[]){
