@@ -5,7 +5,7 @@
 
 #define A 5
 #define C 12345
-#define M 32
+#define M 31
 
 void lcg(char *input, long seed){
   //set seed
@@ -17,10 +17,6 @@ void lcg(char *input, long seed){
   //measure length
   int len;
   len = strlen(input);
-
-  //open file for appending
-  file = fopen("cyphers.txt", "a");
-
   //calculate random number and perform encryption.
   for(int i = 0; i < len; i++){
 
@@ -38,28 +34,22 @@ void lcg(char *input, long seed){
       input[i] = 32;
     }
   }
-  
-  //print end result to file
-  fprintf(file, "%s", input);
-
-  //close the file
-  fclose(file);
 }
 
 
 char *dynamicString(){
-
   //create starting array
   char *input, c;
   int i = 0;
-  input = (char *)malloc(1*sizeof(char));
+  input = (char *)malloc(sizeof(char));
 
   //reallocate array and add characters
   while(c = getc(stdin), c!='\n'){
     input[i] = c;
     i++;
-    input = realloc(input, 2*i*sizeof(char));
+    input = realloc(input, (i + 1)*sizeof(char));
   }
+  
   input[i] = '\0';
   return input;
 }

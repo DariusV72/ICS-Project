@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 
-#define m 32
+#define m 31
 
 void substractive(unsigned char *input, int seed){
   //setup array for keys of 55
@@ -32,13 +32,6 @@ void substractive(unsigned char *input, int seed){
     if(input[i] == 127) {
       input[i] = 32;
     }
-  }
-  //set file pointer
-  FILE *file = NULL;
-
-  //open file for appending and print to file
-  file = fopen("cyphers.txt", "a");
-  fprintf(file, "%s", input);
-  
-  fclose(file);
+  } 
+  free(arr);
 }
